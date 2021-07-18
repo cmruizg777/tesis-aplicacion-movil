@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "smart-urban-farm",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -45,6 +45,18 @@
 </ion-content-->
 
 <ion-content>
+  <ion-item>
+      Temperatura: {{nodo.temperatura}}
+    </ion-item>
+    <ion-item>
+      Humedad: {{nodo.humedad}}
+    </ion-item>
+    <ion-item>
+      Luz: {{nodo.luz}}
+    </ion-item>
+    <ion-item>
+      Humedad Del Suelo: {{nodo.humedadDelSuelo}}
+    </ion-item>
   <ion-list-header color="light">Vertical Bar Chart</ion-list-header>
   <ion-card class="welcome-card">
     <ion-card-header>
@@ -53,6 +65,15 @@
     </ion-card-header>
     <ion-card-content>
       <canvas #barChart></canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Temperatura</ion-card-subtitle>
+      <ion-card-title>C°</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #temperaturaLineChart></canvas>
     </ion-card-content>
   </ion-card>
 </ion-content>

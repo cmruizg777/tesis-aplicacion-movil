@@ -7,12 +7,12 @@ import { map } from 'rxjs/operators';
 export class RealtimeService {
 
   constructor(
-    private db: AngularFireDatabase 
+    private db: AngularFireDatabase
   ) { }
-  
-  getLevelData(level: string){
-    
-    return this.db.list("Nodos/"+level).snapshotChanges()
+
+  getLevelData(/*level: string*/){
+
+    return this.db.list("Nodos"/*/"+level*/).snapshotChanges()
     .pipe(map((actions)=>{
       let obj = {};
       actions.map(

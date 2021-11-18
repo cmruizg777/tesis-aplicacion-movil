@@ -1,0 +1,42 @@
+<!-- Back button with a default href -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!--ion-list-header color="light">Vertical Bar Chart</!--ion-list-header-->
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Test Sin(wt)</ion-card-subtitle>
+      <ion-card-title>{{tab}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #Chart></canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="changeTab('luminosidad')">
+        <ion-icon name="bulb"></ion-icon>
+        <ion-label>Luminosidad</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="changeTab('humedads')">
+        <ion-icon name="water"></ion-icon>
+        <ion-label>Hum. Suelo</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="changeTab('temperatura')">
+        <ion-icon name="thermometer"></ion-icon>
+        <ion-label>Temperatura</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click)="changeTab('humedadr')">
+        <ion-icon name="snow"></ion-icon>
+        <ion-label>Hum. Relativa</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

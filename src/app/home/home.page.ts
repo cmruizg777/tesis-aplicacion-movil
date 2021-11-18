@@ -9,15 +9,15 @@ import { Chart } from 'chart.js';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  @ViewChild('barChart') barChart;
+  @ViewChild('temperaturaLineChart') temperaturaLineChart;
   nodo = {
     temperatura : 0,
     humedad: 0,
     humedadDelSuelo: 0,
     luz: 0
-  }
-  @ViewChild('barChart') barChart;
-  @ViewChild('temperaturaLineChart') temperaturaLineChart;
+  };
+
 
   bars: any;
   temperatureLine: any;
@@ -34,31 +34,28 @@ export class HomePage {
       console.log(this.bars.data);
       this.appendData();
     }, 0);
-
   }
-  appendData(){
+  appendData(counter = 0){
     setTimeout(() => {
       const label = this.getTimeString();
       this.bars.data.labels.push(label);
+      const data = Math.sin(2*Math.PI*Number(0.125)*(counter));
+      this.bars.data.datasets[0].data.push(data);
+      if (this.temperatureLine.data.datasets[0].data.length===10){
+        this.temperatureLine.data.labels.shift();
+        this.temperatureLine.data.datasets[0].data.shift();
+      }
+      this.temperatureLine.data.datasets[0].data.push(data);
       this.temperatureLine.data.labels.push(label);
-
-      const data = Math.random()*30;
-
-      this.bars.data.datasets.forEach((dataset) => {
-          dataset.data.push(data);
-      });
-      this.temperatureLine.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-      });
-
       this.bars.update();
       this.temperatureLine.update();
-      this.appendData();
-    }, 3000);
+      counter++;
+      this.appendData(counter);
+    },25000);
   }
   getTimeString(){
     const date = new Date();
-    return `${date.getHours()}: ${date.getMinutes()}`;
+    return `${date.getHours()}: ${date.getMinutes()}: ${date.getSeconds()}`;
   }
   createBarChart(){
 
@@ -114,18 +111,16 @@ export class HomePage {
 
   ngOnInit(){
     this.getData();
-
-
   }
   async getData(){
-    this.realtime.getLevelData(/*"LEVEL1"*/).subscribe((data:any) => {
+    /*
+    this.realtime.getLevelData().subscribe((data:any) => {
       this.nodo.humedad = data.LEVEL1.Humedad;
       this.nodo.humedadDelSuelo = data.LEVEL1.HumedadDelSuelo;
       this.nodo.luz = data.LEVEL1.Luz;
       this.nodo.temperatura = data.LEVEL1.Temperatura;
       console.log(data);
-    })
+    });
+    */
   }
-
-
 }

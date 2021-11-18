@@ -1,0 +1,30 @@
+ion-content {
+  --background: url(./../../assets/background.jpg);
+  div.menu-items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    ion-card{
+      display: block;
+      width: 50%;
+      opacity: 0.9;
+      text-align: center;
+      border: solid;
+      border-radius: 50px;
+      border-width: 2px;
+      img{
+        width: 80%;
+      }
+    }
+  }
+}
+ion-content::part(background) {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+ion-content::part(scroll) {
+  text-align: center;
+}

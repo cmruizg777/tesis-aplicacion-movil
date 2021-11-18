@@ -10,18 +10,18 @@ export class RealtimeService {
     private db: AngularFireDatabase
   ) { }
 
-  getLevelData(/*level: string*/){
+  getLevelData(path: string){
 
-    return this.db.list("Nodos"/*/"+level*/).snapshotChanges()
+    return this.db.list(path).snapshotChanges()
     .pipe(map((actions)=>{
-      let obj = {};
+      const obj = {};
       actions.map(
-        (data:any)=>{
+        (data: any)=>{
           const key = data.key;
           obj[key]= data.payload.val();
           return;
-        })
+        });
       return obj;
-      }))
+      }));
   }
 }

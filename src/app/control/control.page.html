@@ -10,7 +10,7 @@
 <ion-content *ngIf="data">
   <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-title>Valores Actuales Lámparas]:
+      <ion-card-title>Valores Actuales Lámparas:
         <ion-text color="warning">
           <i class="fa fa-lightbulb"></i>
         </ion-text>
@@ -53,7 +53,7 @@
               <span>Encendido</span>
             </ng-container>
           </ion-label>
-          <ion-toggle color="warning" [(ngModel)]="data.valvula.nivel1" (ngModelChange)="sendChange()"></ion-toggle>
+          <ion-toggle color="primary" [(ngModel)]="data.valvula.nivel1" (ngModelChange)="sendChange()"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label>Nivel 2:
@@ -61,7 +61,7 @@
               <span>Encendido</span>
             </ng-container>
           </ion-label>
-          <ion-toggle color="warning" [(ngModel)]="data.valvula.nivel2" (ngModelChange)="sendChange()"></ion-toggle>
+          <ion-toggle color="primary" [(ngModel)]="data.valvula.nivel2" (ngModelChange)="sendChange()"></ion-toggle>
         </ion-item>
       </ion-list>
     </ion-card-content>
@@ -82,7 +82,7 @@
               <span>Encendido</span>
             </ng-container>
           </ion-label>
-          <ion-toggle color="warning" [(ngModel)]="data.ventiladores.nivel1" (ngModelChange)="sendChange()"></ion-toggle>
+          <ion-toggle color="dark" [(ngModel)]="data.ventiladores.nivel1" (ngModelChange)="sendChange()"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label>Nivel 2:
@@ -90,17 +90,12 @@
               <span>Encendido</span>
             </ng-container>
           </ion-label>
-          <ion-toggle color="warning" [(ngModel)]="data.ventiladores.nivel2" (ngModelChange)="sendChange()"></ion-toggle>
+          <ion-toggle color="dark" [(ngModel)]="data.ventiladores.nivel2" (ngModelChange)="sendChange()"></ion-toggle>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
-  <div class="button-container">
-    <ion-button color="success" size="large" shape="round">
-      <ion-icon slot="end" name="refresh"></ion-icon>
-      Refrescar
-    </ion-button>
-  </div>
+
   <ng-template #elseTemplate>
           <span>Apagado</span>
   </ng-template>

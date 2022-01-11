@@ -39,6 +39,8 @@ export class MonitoringPage implements OnInit {
   };
   currentValue1 = 0;
   currentValue2 = 0;
+  currentState1 = '';
+  currentState2 = '';
   bars: any;
   colorArray: any;
   firebaseSubscription: Subscription;
@@ -49,6 +51,7 @@ export class MonitoringPage implements OnInit {
     setTimeout(() => {
       this.createBarChart();
       this.getData();
+      this.getStatus();
       //this.appendData(null);
     }, 0);
   }
@@ -128,6 +131,8 @@ export class MonitoringPage implements OnInit {
         this.bars.data.datasets[1].data = this.history.temperatura.nivel2.slice();
         break;
    }
+    this.bars.data.datasets[0].label = 'Nivel1: '+this.currentValue1;
+    this.bars.data.datasets[1].label = 'Nivel2: '+this.currentValue2;
     this.bars.update();
   }
   getTimeString(){
@@ -142,14 +147,15 @@ export class MonitoringPage implements OnInit {
         labels: [],
         datasets: [
           {
-            label: 'Nivel1',
+            label: 'Nivel1: '+this.currentValue1,
+
             data: this.history.luminosidad.nivel1,
             //backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
             borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
             //borderWidth: 1
           },
           {
-            label: 'Nivel2',
+            label: 'Nivel2: '+this.currentValue2,
             data: this.history.luminosidad.nivel2,
             //backgroundColor: 'rgb(0, 102, 255)', // array should have same number of elements as number of dataset
             borderColor: 'rgb(0, 102, 255)',// array should have same number of elements as number of dataset
@@ -178,6 +184,13 @@ export class MonitoringPage implements OnInit {
       this.appendData(data);
     });
   }
+  async getStatus(){
+    this.realtime.getLevelData('monitoreo/estado').subscribe((data: any) => {
+      console.log(data);
+      this.currentState1 = data.nivel1;
+      this.currentState2 = data.nivel2;
+    });
+  }
   changeTab(tab: string){
     this.tab = tab;
     this.firebaseSubscription.unsubscribe();
@@ -187,5 +200,9 @@ export class MonitoringPage implements OnInit {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.firebaseSubscription.unsubscribe();
+  }
+  refresh(){
+    console.log('hola')
+    this.getData();
   }
 }

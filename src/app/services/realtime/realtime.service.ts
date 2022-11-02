@@ -15,6 +15,7 @@ export class RealtimeService {
     return this.db.list(path).snapshotChanges()
     .pipe(map((actions)=>{
       const obj = {};
+      console.log(actions);
       actions.map(
         (data: any)=>{
           const key = data.key;

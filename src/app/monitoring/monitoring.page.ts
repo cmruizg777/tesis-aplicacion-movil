@@ -13,34 +13,28 @@ import { Subscription } from 'rxjs';
 export class MonitoringPage implements OnInit {
 
   @ViewChild('Chart') barChart;
-  tab = 'luminosidad';
+  tab = 'temperatura';
 
   history = {
     temperatura : {
       nivel1: [],
-      nivel2: [],
       labels: []
     },
     humedadr: {
       nivel1: [],
-      nivel2: [],
       labels: []
     },
     humedads:  {
       nivel1: [],
-      nivel2: [],
       labels: []
     },
     luminosidad:  {
       nivel1: [],
-      nivel2: [],
       labels: []
     },
   };
   currentValue1 = 0;
-  currentValue2 = 0;
   currentState1 = '';
-  currentState2 = '';
   bars: any;
   colorArray: any;
   firebaseSubscription: Subscription;
@@ -76,68 +70,45 @@ export class MonitoringPage implements OnInit {
     //const data = Math.sin(2*Math.PI*Number(0.125)*(counter));
     const data = newData;
     this.currentValue1 = data.nivel1;
-    this.currentValue2 = data.nivel2;
    switch(this.tab){
-    case 'luminosidad':
-      if (this.history.luminosidad.nivel1.length===10){
-        this.history.luminosidad.labels.shift();
-        this.history.luminosidad.nivel1.shift();
-        this.history.luminosidad.nivel2.shift();
+    case 'humedads':
+      if (this.history.humedads.nivel1.length===10){
+        this.history.humedads.labels.shift();
+        this.history.humedads.nivel1.shift();
       }
-      this.history.luminosidad.nivel1.push(data.nivel1);
-      this.history.luminosidad.nivel2.push(data.nivel2);
-      this.history.luminosidad.labels.push(label);
-      this.bars.data.labels = this.history.luminosidad.labels.slice();
-      this.bars.data.datasets[0].data = this.history.luminosidad.nivel1.slice();
-      this.bars.data.datasets[1].data = this.history.luminosidad.nivel2.slice();
+      this.history.humedads.nivel1.push(data.nivel1);
+      this.history.humedads.labels.push(label);
+      this.bars.data.labels = this.history.humedads.labels.slice();
+      this.bars.data.datasets[0].data = this.history.humedads.nivel1.slice();
       break;
-      case 'humedads':
-        if (this.history.humedads.nivel1.length===10){
-          this.history.humedads.labels.shift();
-          this.history.humedads.nivel1.shift();
-          this.history.humedads.nivel2.shift();
-        }
-        this.history.humedads.nivel1.push(data.nivel1);
-        this.history.humedads.nivel2.push(data.nivel2);
-        this.history.humedads.labels.push(label);
-        this.bars.data.labels = this.history.humedads.labels.slice();
-        this.bars.data.datasets[0].data = this.history.humedads.nivel1.slice();
-        this.bars.data.datasets[1].data = this.history.humedads.nivel2.slice();
-        break;
-      case 'humedadr':
-        if (this.history.humedads.nivel1.length===10){
-          this.history.humedadr.labels.shift();
-          this.history.humedadr.nivel1.shift();
-          this.history.humedadr.nivel2.shift();
-        }
-        this.history.humedadr.nivel1.push(data.nivel1);
-        this.history.humedadr.nivel2.push(data.nivel2);
-        this.history.humedadr.labels.push(label);
-        this.bars.data.labels = this.history.humedadr.labels.slice();
-        this.bars.data.datasets[0].data = this.history.humedadr.nivel1.slice();
-        this.bars.data.datasets[1].data = this.history.humedadr.nivel2.slice();
-        break;
-      case 'temperatura':
-        if (this.history.temperatura.nivel1.length===10){
-          this.history.temperatura.labels.shift();
-          this.history.temperatura.nivel1.shift();
-          this.history.temperatura.nivel2.shift();
-        }
-        this.history.temperatura.nivel1.push(data.nivel1);
-        this.history.temperatura.nivel2.push(data.nivel2);
-        this.history.temperatura.labels.push(label);
-        this.bars.data.labels = this.history.temperatura.labels.slice();
-        this.bars.data.datasets[0].data = this.history.temperatura.nivel1.slice();
-        this.bars.data.datasets[1].data = this.history.temperatura.nivel2.slice();
-        break;
+    case 'humedadr':
+      //console.log(data)
+      if (this.history.humedadr.nivel1.length===10){
+        this.history.humedadr.labels.shift();
+        this.history.humedadr.nivel1.shift();
+      }
+      this.history.humedadr.nivel1.push(data.nivel1);
+      this.history.humedadr.labels.push(label);
+      this.bars.data.labels = this.history.humedadr.labels.slice();
+      this.bars.data.datasets[0].data = this.history.humedadr.nivel1.slice();
+      break;
+    case 'temperatura':
+      if (this.history.temperatura.nivel1.length===10){
+        this.history.temperatura.labels.shift();
+        this.history.temperatura.nivel1.shift();
+      }
+      this.history.temperatura.nivel1.push(data.nivel1);
+      this.history.temperatura.labels.push(label);
+      this.bars.data.labels = this.history.temperatura.labels.slice();
+      this.bars.data.datasets[0].data = this.history.temperatura.nivel1.slice();
+      break;
    }
-    this.bars.data.datasets[0].label = 'Nivel1: '+this.currentValue1;
-    this.bars.data.datasets[1].label = 'Nivel2: '+this.currentValue2;
+    this.bars.data.datasets[0].label = 'Valor actual: '+this.currentValue1;
     this.bars.update();
   }
   getTimeString(){
     const date = new Date();
-    return `${date.getHours()}: ${date.getMinutes()}: ${date.getSeconds()}`;
+    return `${date.getHours()}: ${date.getMinutes()}`;
   }
   createBarChart(){
 
@@ -147,18 +118,11 @@ export class MonitoringPage implements OnInit {
         labels: [],
         datasets: [
           {
-            label: 'Nivel1: '+this.currentValue1,
+            label: 'Vallor actual: '+this.currentValue1,
 
             data: this.history.luminosidad.nivel1,
             //backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-            borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
-            //borderWidth: 1
-          },
-          {
-            label: 'Nivel2: '+this.currentValue2,
-            data: this.history.luminosidad.nivel2,
-            //backgroundColor: 'rgb(0, 102, 255)', // array should have same number of elements as number of dataset
-            borderColor: 'rgb(0, 102, 255)',// array should have same number of elements as number of dataset
+            borderColor: 'rgb(51, 59, 255)',// array should have same number of elements as number of dataset
             //borderWidth: 1
           }
         ]
@@ -188,7 +152,6 @@ export class MonitoringPage implements OnInit {
     this.realtime.getLevelData('monitoreo/estado').subscribe((data: any) => {
       console.log(data);
       this.currentState1 = data.nivel1;
-      this.currentState2 = data.nivel2;
     });
   }
   changeTab(tab: string){
@@ -202,7 +165,6 @@ export class MonitoringPage implements OnInit {
     this.firebaseSubscription.unsubscribe();
   }
   refresh(){
-    console.log('hola')
     this.getData();
   }
 }

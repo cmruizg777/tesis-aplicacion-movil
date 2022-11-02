@@ -6,3 +6,32 @@ div.button-container{
 ion-card-title.state p{
   font-size: 0.7rem;
 }
+ion-toolbar{
+
+  div.title{
+    margin-left: 20px !important;
+    ion-text{
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+}
+
+div.container{
+  height: 100%;
+  width:60%;
+  align-items: center;
+  display: block;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  ion-card-content{
+    width: 100%;
+    canvas{
+      width: 100% !important;
+      height: 50% !important;
+    }
+  }
+}
+
+

@@ -1,35 +1,36 @@
 <!-- Back button with a default href -->
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="menu"></ion-back-button>
+    <div class="title">
+      <ion-text>
+        <p>Sistema de automatización de invernaderos</p>
+      </ion-text>
+    </div>
+
+    <ion-buttons slot="end">
+      <!--ion-back-button defaultHref="menu"></!--ion-back-button-->
+      <ion-button color="primary" [routerLink]="'/login'" shape="round" (click)="refresh()">
+        <ion-icon slot="end" name="person-circle-outline" ></ion-icon>
+        Iniciar Sesión
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content scroll-y="'true'">
   <!--ion-list-header color="light">Vertical Bar Chart</!--ion-list-header-->
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-title>Monitoreo de {{tab}}</ion-card-title>
-      <ion-card-subtitle>{{tab}} vs hora (HH:mm:ss)</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #Chart></canvas>
-    </ion-card-content>
-  </ion-card>
+  <div class="container">
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title>Monitoreo de {{tab}}</ion-card-title>
+        <ion-card-subtitle>{{tab}} vs hora (HH:mm:ss)</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #Chart></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
   <!--ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-subtitle>Valores Actuales de {{tab}} :</ion-card-subtitle>
-      <ion-card-title>Nivel1 : {{currentValue1}}</ion-card-title>
-      <ion-card-title>Nivel2 : {{currentValue2}}</ion-card-title>
-    </ion-card-header>
-  </!--ion-card-->
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-subtitle>Estado Actual :</ion-card-subtitle>
-      <ion-card-title class="state">Nivel1 : <p>{{currentState1}}</p></ion-card-title>
-      <ion-card-title class="state">Nivel2 : <p>{{currentState2}}</p></ion-card-title>
-    </ion-card-header>
     <ion-card-content>
 
       <ion-button color="success"  shape="round" (click)="refresh()">
@@ -37,19 +38,13 @@
         Refrescar
       </ion-button>
     </ion-card-content>
-  </ion-card>
+  </!--ion-card-->
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button (click)="changeTab('luminosidad')">
-        <ion-icon name="bulb"></ion-icon>
-        <ion-label>Luminosidad</ion-label>
-      </ion-tab-button>
-
       <ion-tab-button (click)="changeTab('humedads')">
         <ion-icon name="water"></ion-icon>
         <ion-label>Hum. Suelo</ion-label>
       </ion-tab-button>
-
       <ion-tab-button (click)="changeTab('temperatura')">
         <ion-icon name="thermometer"></ion-icon>
         <ion-label>Temperatura</ion-label>

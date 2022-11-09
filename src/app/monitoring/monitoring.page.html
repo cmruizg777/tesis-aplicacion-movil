@@ -1,33 +1,131 @@
 <!-- Back button with a default href -->
-<ion-header>
-  <ion-toolbar>
-    <div class="title">
-      <ion-text>
-        <p>Sistema de automatización de invernaderos</p>
-      </ion-text>
-    </div>
 
-    <ion-buttons slot="end">
-      <!--ion-back-button defaultHref="menu"></!--ion-back-button-->
-      <ion-button color="primary" [routerLink]="'/login'" shape="round" (click)="refresh()">
-        <ion-icon slot="end" name="person-circle-outline" ></ion-icon>
-        Iniciar Sesión
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content scroll-y="'true'">
   <!--ion-list-header color="light">Vertical Bar Chart</!--ion-list-header-->
   <div class="container">
-    <ion-card class="welcome-card">
-      <ion-card-header>
-        <ion-card-title>Monitoreo de {{tab}}</ion-card-title>
-        <ion-card-subtitle>{{tab}} vs hora (HH:mm:ss)</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #Chart></canvas>
-      </ion-card-content>
-    </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-card class="welcome-card">
+          <ion-card-header>
+            <ion-card-title>Monitoreo de Temperatura</ion-card-title>
+            <ion-card-subtitle>Temperatura(C°) vs hora (HH:mm:ss)</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #Chart1></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="welcome-card">
+          <ion-card-header>
+            <ion-card-title>Monitoreo de Humedad Relativa</ion-card-title>
+            <ion-card-subtitle>Humedad Relativa(%) vs hora (HH:mm:ss)</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #Chart2></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="welcome-card">
+          <ion-card-header>
+            <ion-card-title>Monitoreo de Humedad del suelo</ion-card-title>
+            <ion-card-subtitle>Humedad del suelo(%) vs hora (HH:mm:ss)</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #Chart3></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="welcome-card">
+          <ion-card-header color="primary">
+            <ion-card-title>Estado del Invernadero</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-card class="welcome-card">
+                  <ion-card-header>
+                    <ion-card-title>Riego:
+                      <ion-text color="primary">
+                        <i class="fa fa-water"></i>
+                      </ion-text>
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-list>
+                      <ion-item>
+                        <ion-toggle color="primary" [checked]="true"></ion-toggle>
+                        <ion-label slot="end">
+                          <ng-container *ngIf="true">
+                            <span>Encendido</span>
+                          </ng-container>
+                        </ion-label>
+
+                      </ion-item>
+
+                    </ion-list>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="welcome-card">
+                  <ion-card-header>
+                    <ion-card-title>Ventilación:
+                      <ion-text color="dark">
+                        <i class="fa fa-fan"></i>
+                      </ion-text>
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-list>
+                      <ion-item>
+                        <ion-toggle color="dark" [checked]="true"></ion-toggle>
+                        <ion-label slot="end">
+                          <ng-container *ngIf="true">
+                            <span>Encendido</span>
+                          </ng-container>
+                        </ion-label>
+
+                      </ion-item>
+
+                    </ion-list>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="welcome-card">
+                  <ion-card-header>
+                    <ion-card-title>Atomizadores:
+                      <ion-text color="medium">
+                        <i class="fa fa-arrows-spin"></i>
+                      </ion-text>
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-list>
+                      <ion-item>
+                        <ion-toggle color="medium" [checked]="true"></ion-toggle>
+                        <ion-label slot="end">
+                          <ng-container *ngIf="true">
+                            <span>Encendido</span>
+                          </ng-container>
+                        </ion-label>
+
+                      </ion-item>
+
+                    </ion-list>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </div>
 
   <!--ion-card class="welcome-card">
@@ -39,6 +137,7 @@
       </ion-button>
     </ion-card-content>
   </!--ion-card-->
+  <!--
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button (click)="changeTab('humedads')">
@@ -55,4 +154,5 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+  -->
 </ion-content>

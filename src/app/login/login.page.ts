@@ -15,11 +15,18 @@ export class LoginPage implements OnInit {
   constructor(private auth: AuthService, private navCtrl: NavController, private alert: AlertService) { }
 
   ngOnInit() {
+    this.auth.getUserState().subscribe(user => {
+      if(user){
+        this.user = user;
+        this.navCtrl.navigateRoot('/monitoring');
+      }
+    });
+    this.auth.verifyState();
   }
   login(){
     if(this.user.username != null && this.user.username != "" && this.user.password!=null && this.user.password!=""){
       this.auth.login(this.user.username, this.user.password).then(state => {
-        this.navCtrl.navigateRoot('buttons-menu');
+        this.navCtrl.navigateRoot('monitoring');
       }, err => {
         if(err.status == 401){
           this.alert.presentAlert('Error!', 'Login fallido', 'Usuario o contraseña incorrectos.')

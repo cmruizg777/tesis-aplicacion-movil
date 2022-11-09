@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { ApiService } from './api.service';
 import { User } from './../models/user';
 import { Subject } from 'rxjs';
@@ -9,7 +10,7 @@ import * as moment from "moment";
 export class AuthService {
   currentUser: User = null;
   $_userState = new Subject<User>();
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private nvctrl: NavController) {
 
   }
   getUserState(){
@@ -55,6 +56,7 @@ export class AuthService {
       localStorage.removeItem("token");
       localStorage.removeItem("expires_at");
       this.setCurrentUser();
+      this.nvctrl.navigateRoot('/login')
   }
 
   public isLoggedIn() {

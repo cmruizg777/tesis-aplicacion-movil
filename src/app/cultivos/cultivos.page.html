@@ -1,33 +1,15 @@
-<!-- Back button with a default href -->
-<ion-header>
-  <ion-toolbar>
-    <div class="title">
-      <ion-text>
-        <p>Sistema de automatización de invernaderos</p>
-      </ion-text>
-    </div>
-
-    <ion-buttons slot="end">
-      <!--ion-back-button defaultHref="menu"></!--ion-back-button-->
-      <ion-button color="primary" [routerLink]="'/logout'" shape="round" (click)="logout()">
-        <ion-icon slot="end" name="person-circle-outline" ></ion-icon>
-        Cerrar Sesión
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content scroll-y="'true'">
   <!--ion-list-header color="light">Vertical Bar Chart</!--ion-list-header-->
-  <div class="container">
+  <div class="container" style="margin-top: 80px;">
     <ion-card class="welcome-card">
-      <ion-card-header>
-        <ion-card-title></ion-card-title>
+      <ion-card-header color="primary">
+        <ion-card-title>Gestión de cultivos</ion-card-title>
         <ion-card-subtitle></ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col size="6">
+            <ion-col>
               <ion-item>
                 <ion-label position="stacked">Código</ion-label>
                 <ion-input type="text"  [(ngModel)]="cultivo.codigo" class=""></ion-input>
@@ -35,18 +17,6 @@
               <ion-item>
                 <ion-label position="stacked">Nombre</ion-label>
                 <ion-input type="text"  [(ngModel)]="cultivo.nombre" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Kc Inicial</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcIni" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Kc Medio</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcMed" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Kc Final</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcFin" class=""></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="stacked">Temp. Min</ion-label>
@@ -75,9 +45,47 @@
                 <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.humSueloMin" class=""></ion-input>
               </ion-item>
             </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Kc Inicial</ion-label>
+                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcIni" class=""></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Kc Medio</ion-label>
+                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcMed" class=""></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Kc Final</ion-label>
+                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcFin" class=""></ion-input>
+              </ion-item>
+
+              <ion-button size="lg">Guardar</ion-button>
+
+            </ion-col>
           </ion-row>
         </ion-grid>
-
+        <div>
+          <table>
+            <thead style="background-color: var(--ion-color-primary);">
+              <th>Cod.</th>
+              <th>Cultivo</th>
+              <th>Fecha Ini</th>
+              <th>Fecha Fin</th>
+              <th>Activo</th>
+              <th>Obs</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of cultivos">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

@@ -1,3 +1,4 @@
+import { Cultivo } from './../models/cultivo';
 
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -133,7 +134,72 @@ export class ApiService {
   post<Type>(endpoint: string, params: any = {}): Observable<Type>{
     return this.http.post<Type>(this.getFinalUrl(endpoint), params);
   }
+  put<Type>(endpoint: string, params: any = {}): Observable<Type>{
+    return this.http.put<Type>(this.getFinalUrl(endpoint), params);
+  }
+  delete<Type>(endpoint: string, params: any = {}): Observable<Type>{
+    return this.http.delete<Type>(this.getFinalUrl(endpoint));
+  }
   getFinalUrl(endpoint: string){
     return environment.baseUrl + endpoint;
   }
+  /*CRUD CULTIVOS */
+  obtenerCultivos(){
+    let endpoint = '/cultivo';
+    return this.get<Cultivo>(endpoint).toPromise();
+  }
+  guardarCultivo(cultivo){
+    let endpoint = '/cultivo/cretae';
+    return this.post<Cultivo>(endpoint, cultivo).toPromise();
+  }
+  editarCultivo(cultivo){
+    let endpoint = '/cultivo/edit';
+    return this.put<Cultivo>(endpoint, cultivo).toPromise();
+  }
+  borrarCultivo(cultivo){
+    let endpoint = '/cultivo/delete/'+cultivo.id;
+    return this.delete<Cultivo>(endpoint).toPromise();
+  }
+
+  /*CRUD CICLOS CULTIVOS */
+  /*
+  obtenerCultivos(){
+    let endpoint = '/cultivo';
+    return this.get<Cultivo>(endpoint).toPromise();
+  }
+  guardarCultivo(cultivo){
+    let endpoint = '/cultivo/cretae';
+    return this.post<Cultivo>(endpoint, cultivo).toPromise();
+  }
+  editarCultivo(cultivo){
+    let endpoint = '/cultivo/edit';
+    return this.put<Cultivo>(endpoint, cultivo).toPromise();
+  }
+  borrarCultivo(cultivo){
+    let endpoint = '/cultivo/delete/'+cultivo.id;
+    return this.delete<Cultivo>(endpoint).toPromise();
+  }
+  */
+  /*CRUD INVERNADEROS */
+  /*
+  obtenerCultivos(){
+    let endpoint = '/cultivo';
+    return this.get<Cultivo>(endpoint).toPromise();
+  }
+  guardarCultivo(cultivo){
+    let endpoint = '/cultivo/cretae';
+    return this.post<Cultivo>(endpoint, cultivo).toPromise();
+  }
+  editarCultivo(cultivo){
+    let endpoint = '/cultivo/edit';
+    return this.put<Cultivo>(endpoint, cultivo).toPromise();
+  }
+  borrarCultivo(cultivo){
+    let endpoint = '/cultivo/delete/'+cultivo.id;
+    return this.delete<Cultivo>(endpoint).toPromise();
+  }
+  */
+
+  //REPORTES
+
 }

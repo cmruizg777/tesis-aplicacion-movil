@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ciclos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="container-fluid mt-4">
+    <ion-card class="welcome-card">
+      <ion-card-header color="primary">
+        <ion-card-title>Gestión de Ciclos de Cultivo</ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="row mt-2">
+          <div class="col-4">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <select name="" id="" class="form-control" [(ngModel)]="item.crop_id">
+                    <option value="{{c.id}}" *ngFor="let c of dataCrops">{{c.description}}</option>
+                  </select>
+                  <label for="floatingInput">Cultivo</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <select name="" id="" class="form-control" [(ngModel)]="item.greenhouse_id">
+                    <option value="{{g.id}}" *ngFor="let g of dataGreenHouses">{{g.description}}</option>
+                  </select>
+                  <label for="floatingInput">Invernadero</label>
+                </div>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="floatingInput">Fecha Inicial</label>
+                  <div class="input-group">
+                    <ion-datetime presentation="year-month" class="form-control" [(ngModel)]="item.init_date"></ion-datetime>
+                    <!--input type="text" class="form-control"-->
+                    <button class="btn btn-outline-secondary" type="button" id="open-modal">
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </div>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="floatingInput">Fecha Final</label>
+                  <div class="input-group">
+                    <ion-datetime presentation="year-month" class="form-control" [(ngModel)]="item.end_date"></ion-datetime>
+                    <!--input type="text" class="form-control"-->
+                    <button class="btn btn-outline-secondary" type="button" id="open-modal">
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </div>
+              </div>
+              <div class="col-9 mt-2">
+                <div class="form-group row"><label for="" class="col-form-label col-4">Observ.</label>
+                  <div class="col-8">
+                    <textarea name="" id="" cols="30" rows="10" [(ngModel)]="item.observations" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-check row">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="item.active" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Estado
+                  </label>
+                </div>
+                <button type="button" class="btn btn-block btn-primary" (click)="save()"> Guardar</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="table-responsive-md">
+              <table class="table table-hover">
+                <thead class="bg-black text-light p-1">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Invernadero</th>
+                  <th scope="col">Cultivo</th>
+                  <th scope="col">Fecha Ini</th>
+                  <th scope="col">Fecha Fin</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Observaciones</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let i of data">
+                  <th scope="row">{{i.id}}</th>
+                  <td>{{greenhouse(i.greenhouse_id)}}</td>
+                  <td>{{crop(i.crop_id)}}</td>
+                  <td>{{i.init_date}}</td>
+                  <td>{{i.end_date}}</td>
+
+                  <td><span *ngIf="i.active">SI</span><span *ngIf="!i.active">NO</span></td>
+                  <td>{{i.observations}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning" (click)="item = i; edit = true;">
+                      <i class="class fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(i.id)">
+                      <i class="class fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+

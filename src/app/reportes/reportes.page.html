@@ -5,5 +5,80 @@
 </ion-header>
 
 <ion-content>
-
+  <div class="container-fluid mt-4">
+    <ion-card class="welcome-card">
+      <ion-card-header color="primary">
+        <ion-card-title>Reportes</ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="row mt-2">
+          <div class="col-4">
+            <div class="row justify-content-end">
+              <div class="col-6 mb-3">
+                <label for="floatingInput">Fecha Inicial</label>
+                  <div class="input-group">
+                    <ion-datetime presentation="year-month" class="form-control" [(ngModel)]="item.init_date"></ion-datetime>
+                    <!--input type="text" class="form-control"-->
+                    <button class="btn btn-outline-secondary" type="button" id="open-modal">
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </div>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="floatingInput">Fecha Final</label>
+                  <div class="input-group">
+                    <ion-datetime presentation="date" class="form-control" [(ngModel)]="item.end_date"></ion-datetime>
+                    <!--input type="text" class="form-control"-->
+                    <button class="btn btn-outline-secondary" type="button" id="open-modal">
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </div>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-block btn-success" (click)="exportData()">
+                  <i class="fa fa-file-excel"></i>
+                  Exportar
+                </button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-block btn-primary" (click)="getData()">
+                  <i class="fa fa-search"></i>
+                  Buscar
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="table-responsive-md" style="max-height: 70vh; overflow-y: scroll;">
+              <table class="table table-hover" >
+                <thead class="bg-black text-light p-1">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Ciclo</th>
+                  <th scope="col">Temp°C</th>
+                  <th scope="col">HR %</th>
+                  <th scope="col">HS %</th>
+                  <th scope="col">Fecha Hora</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let i of data">
+                  <th scope="row">{{i.id}}</th>
+                  <td>{{i.cycle_id}}</td>
+                  <td>{{i.temperature}}</td>
+                  <td>{{i.relative_humidity}}</td>
+                  <td>{{i.soil_moisture}}</td>
+                  <td>{{i.date_time}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+
+

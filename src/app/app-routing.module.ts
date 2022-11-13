@@ -8,21 +8,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'intro',
-    loadChildren: () => import('./intro/intro.module').then( m => m.IntroPageModule)
-  },
-  {
-    path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
-  },
-  {
     path: 'monitoring',
     loadChildren: () => import('./monitoring/monitoring.module').then( m => m.MonitoringPageModule)
   },
   {
-    path: 'control',
-    loadChildren: () => import('./control/control.module').then( m => m.ControlPageModule)
-  },  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -31,13 +20,18 @@ const routes: Routes = [
     loadChildren: () => import('./cultivos/cultivos.module').then( m => m.CultivosPageModule)
   },
   {
-    path: 'parametros',
-    loadChildren: () => import('./parametros/parametros.module').then( m => m.ParametrosPageModule)
-  },
-  {
     path: 'reportes',
     loadChildren: () => import('./reportes/reportes.module').then( m => m.ReportesPageModule)
   },
+  {
+    path: 'ciclos',
+    loadChildren: () => import('./ciclos/ciclos.module').then( m => m.CiclosPageModule)
+  },
+  {
+    path: 'invernaderos',
+    loadChildren: () => import('./invernaderos/invernaderos.module').then( m => m.InvernaderosPageModule)
+  },
+
 
 ];
 

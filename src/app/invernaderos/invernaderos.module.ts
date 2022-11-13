@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { IntroPageRoutingModule } from './intro-routing.module';
+import { InvernaderosPageRoutingModule } from './invernaderos-routing.module';
 
-import { IntroPage } from './intro.page';
+import { InvernaderosPage } from './invernaderos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IntroPageRoutingModule
+    InvernaderosPageRoutingModule
   ],
-  declarations: [IntroPage]
+  declarations: [InvernaderosPage]
 })
-export class IntroPageModule {}
+export class InvernaderosPageModule {}

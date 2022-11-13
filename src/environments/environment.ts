@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/saac-api/public/index.php/',
+  baseUrl: 'http://localhost:8080/',
   firebaseConfig : {
     apiKey: 'AIzaSyAJYp_nwwfabR4ENM7CGHQNJLoY3jI_39Q',
     authDomain: 'sai-ecaa.firebaseapp.com',

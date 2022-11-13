@@ -1,90 +1,134 @@
-<ion-content scroll-y="'true'">
-  <!--ion-list-header color="light">Vertical Bar Chart</!--ion-list-header-->
-  <div class="container" style="margin-top: 80px;">
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cultivos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-fluid mt-4">
     <ion-card class="welcome-card">
       <ion-card-header color="primary">
-        <ion-card-title>Gestión de cultivos</ion-card-title>
+        <ion-card-title>Gestión de Cultivos</ion-card-title>
         <ion-card-subtitle></ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-item>
-                <ion-label position="stacked">Código</ion-label>
-                <ion-input type="text"  [(ngModel)]="cultivo.codigo" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Nombre</ion-label>
-                <ion-input type="text"  [(ngModel)]="cultivo.nombre" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Temp. Min</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.tempMin" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Temp. Max</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.tempMax" class=""></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label position="stacked">Hum. Rel Min</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.humRelMin" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Hum. Rel Max</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.humRelMax" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Hum. Suelo Max</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.humSueloMax" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Hum. Suelo Min</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.humSueloMin" class=""></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label position="stacked">Kc Inicial</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcIni" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Kc Medio</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcMed" class=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Kc Final</ion-label>
-                <ion-input type="number" min="0" step="0.01" [(ngModel)]="cultivo.kcFin" class=""></ion-input>
-              </ion-item>
-
-              <ion-button size="lg">Guardar</ion-button>
-
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-        <div>
-          <table>
-            <thead style="background-color: var(--ion-color-primary);">
-              <th>Cod.</th>
-              <th>Cultivo</th>
-              <th>Fecha Ini</th>
-              <th>Fecha Fin</th>
-              <th>Activo</th>
-              <th>Obs</th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let c of cultivos">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row mt-2">
+          <div class="col-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group row">
+                  <label for="" class="col-form-label col-4">
+                    Descripción
+                  </label>
+                  <div class="col-8"><input type="text" [(ngModel)]="item.description" class="form-control"></div>
+                </div>
+              </div>
+              <div class="col-4 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.kc_init" >
+                  <label for="floatingInput">Kc_ini</label>
+                </div>
+              </div>
+              <div class="col-4 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.kc_med" >
+                  <label for="floatingInput">Kc_med</label>
+                </div>
+              </div>
+              <div class="col-4 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.kc_final" >
+                  <label for="floatingInput">Kc_fin</label>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.max_temp" >
+                  <label for="floatingInput">T°Max</label>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.min_temp" >
+                  <label for="floatingInput">T°Min</label>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.max_hr" >
+                  <label for="floatingInput">HR°Max</label>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.min_hr" >
+                  <label for="floatingInput">HR°Min</label>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.max_hs" >
+                  <label for="floatingInput">HS°Max</label>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="item.min_hs" >
+                  <label for="floatingInput">HS°Min</label>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-2">
+                <div class="col-3">
+                  <button type="button" class="btn btn-block btn-primary" (click)="save()"> Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="table-responsive-md">
+              <table class="table table-hover">
+                <thead class="bg-black text-light p-1">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Kc Ini</th>
+                  <th scope="col">Kc Med</th>
+                  <th scope="col">Kc Fin</th>
+                  <th scope="col">T°Max</th>
+                  <th scope="col">T°Min</th>
+                  <th scope="col">HR%Max</th>
+                  <th scope="col">HR%Min</th>
+                  <th scope="col">HS%Max</th>
+                  <th scope="col">HS%Min</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let i of data">
+                  <th scope="row">{{i.id}}</th>
+                  <td>{{i.description}}</td>
+                  <td>{{i.kc_init}}</td>
+                  <td>{{i.kc_med}}</td>
+                  <td>{{i.kc_final}}</td>
+                  <td>{{i.max_temp}}</td>
+                  <td>{{i.min_temp}}</td>
+                  <td>{{i.max_hr}}</td>
+                  <td>{{i.min_hr}}</td>
+                  <td>{{i.max_hs}}</td>
+                  <td>{{i.min_hs}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning" (click)="item = i; edit = true;">
+                      <i class="class fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(i.id)">
+                      <i class="class fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </ion-card-content>
     </ion-card>

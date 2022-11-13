@@ -1,14 +1,13 @@
 import { ApiService } from './../services/api.service';
-import { Cultivo } from './../models/cultivo';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cultivos',
-  templateUrl: './cultivos.page.html',
-  styleUrls: ['./cultivos.page.scss'],
+  selector: 'app-invernaderos',
+  templateUrl: './invernaderos.page.html',
+  styleUrls: ['./invernaderos.page.scss'],
 })
-export class CultivosPage implements OnInit {
-  endpoint = '/crop';
+export class InvernaderosPage implements OnInit {
+  endpoint = '/greenhouse';
   data: any[];
   edit = false;
   item: any = {};
@@ -47,5 +46,4 @@ export class CultivosPage implements OnInit {
       this.create();
     }
   }
-
 }
